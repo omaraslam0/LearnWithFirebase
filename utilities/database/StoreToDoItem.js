@@ -5,6 +5,7 @@ export async function storeToDoItem(userId, userEmail, itemText) {
     try {
 
         
+        const userTodoListCollection = collection(db, `todo-list-${userId}`);
         /*STEP 5: Get a refernce to the collection we want to store. Lets use the following documentation 
         to figure this out: https://firebase.google.com/docs/firestore/query-data/get-data */
 
@@ -13,7 +14,12 @@ export async function storeToDoItem(userId, userEmail, itemText) {
         const docUniqueId = generateUniqueId();
 
         //STEP 6: Create a object called data that will hold the information going into the document 
-
+const data = {
+    userId: userId,
+    email: userEmail,
+    itemText: itemText,
+    uid: docUniqueId,
+};
 
         // store the following data in a document the specified user collection
         // userTodoListCollection -> the collection we store into
